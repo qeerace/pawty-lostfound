@@ -16,19 +16,14 @@
                 <v-col cols="12" md="6">
                   <v-card-title
                     class="title font-weight-black blue-grey--text text--darken-3"
-                    >Contact Thread Owner</v-card-title
-                  >
+                  >Contact Thread Owner</v-card-title>
                   <v-card-text pb-0 class="blue-grey--text text--darken-3">
                     <div>
-                      <v-icon small color="yellow darken-3"
-                        >mdi-account-card-details-outline</v-icon
-                      >
+                      <v-icon small color="yellow darken-3">mdi-account-card-details-outline</v-icon>
                       Name: {{ petDetail.name }}
                     </div>
                     <div>
-                      <v-icon small color="yellow darken-3"
-                        >mdi-email-newsletter</v-icon
-                      >
+                      <v-icon small color="yellow darken-3">mdi-email-newsletter</v-icon>
                       E-mail: {{ petDetail.email }}
                     </div>
                     <div>
@@ -37,32 +32,17 @@
                     </div>
                   </v-card-text>
                   <div class="d-flex inline-block">
-                    <v-card-actions
-                      style="padding-left:17px; padding-right:4px;"
-                    >
-                      
-                    </v-card-actions>
-                    <v-card-actions style="padding-left:4px;">
-                      <v-btn
-                        v-if="isLogin"
-                        class="mx-0 subtitle-2 font-italic font-weight-medium amber--text text--lighten-5"
-                        color="red darken-3"
-                        @click="deletePost()"
-                        >Delete</v-btn
-                      >
-                    </v-card-actions>
+                    <v-card-actions style="padding-left:17px; padding-right:4px;"></v-card-actions>
                   </div>
                 </v-col>
 
                 <v-col cols="12" md="6">
                   <v-card-title
-                    class="title font-weight-black blue-grey--text text--darken-3"
+                    class="title font-weight-black blue-grey--text text--darken-3 text-uppercase"
                   >{{petDetail.post_type}} {{petDetail.color}} {{petDetail.pet_type}} ({{petDetail.gender}})</v-card-title>
                   <v-card-subtitle pb-0>
                     <div>
-                      <v-icon small color="yellow darken-3"
-                        >mdi-map-marker</v-icon
-                      >
+                      <v-icon small color="yellow darken-3">mdi-map-marker</v-icon>
                       {{ petDetail.province }}
                     </div>
                     <div>
@@ -84,6 +64,15 @@
                   </v-card-text>
                 </v-col>
               </v-row>
+              <v-card-actions v-if="isLogin">
+                <v-card-subtitle>Already Found?</v-card-subtitle>
+                <v-btn
+                  
+                  class="mx-0 subtitle-2 font-italic font-weight-medium amber--text text--lighten-5"
+                  color="red darken-3"
+                  @click="deletePost()"
+                >Delete Post</v-btn>
+              </v-card-actions>
               <vue-disqus
                 class="disqus"
                 shortname="pawty-cie"
@@ -103,9 +92,7 @@
         <v-icon color="yellow darken-2">mdi-arrow-left-thick</v-icon>
         <span>Back</span>
       </div>
-      <p class="display-4 font-weight-bold found yellow--text text--darken-2">
-        FOUND
-      </p>
+      <p class="display-4 font-weight-bold found yellow--text text--darken-2">FOUND</p>
     </v-overlay>
   </div>
 </template>
@@ -130,8 +117,8 @@ export default {
     axios
       .get(`/pet-detail/${this.$route.params.id}`, config)
       .then(response => {
+        console.log(this.$route.params.id);
         this.petDetail = response.data;
-        
         if (response.data.is_owner === true) {
           this.isLogin = true;
         }
@@ -139,9 +126,7 @@ export default {
           this.isFound = true;
         }
       })
-      .catch(() => {
-        
-      });
+      .catch(() => {});
   },
   data() {
     return {
@@ -170,8 +155,7 @@ export default {
         .then(() => {
           location.reload();
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     }
   }
 };

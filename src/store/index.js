@@ -9,7 +9,8 @@ export default new Vuex.Store({
     loginModal: false,
     filterType: [],
     filterGender: [],
-    filterProvince: []
+    filterProvince: [],
+    myPosts: []
   },
   mutations: {
     setUser(state, payload) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     setFilterProvince(state, payload) {
       state.filterProvince = payload;
     },
+    setMyPosts(state, payload){
+      state.myPosts = payload;
+    },
     removeUser(state) {
       state.user = null;
     }
@@ -42,6 +46,9 @@ export default new Vuex.Store({
       commit("setFilterType", type);
       commit("setFilterGender", gender);
       commit("setFilterProvince", province);
+    },
+    setMyPosts({ commit }, myPosts) {
+      commit("setMyPosts", myPosts);
     }
   },
   getters: {
@@ -59,6 +66,9 @@ export default new Vuex.Store({
     },
     getFilterProvince(state) {
       return state.filterProvince;
+    },
+    getMyPosts(state) {
+      return state.myPosts;
     }
   },
   modules: {}

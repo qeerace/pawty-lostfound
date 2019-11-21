@@ -18,32 +18,19 @@
                   <v-container py-0>
                     <v-layout wrap>
                       <v-flex xs12 md12>
-                        <v-icon color="blue-grey darken-3"
-                          >mdi-cursor-default-click</v-icon
-                        >
+                        <v-icon color="blue-grey darken-3">mdi-cursor-default-click</v-icon>
                         <span
                           class="title text-left font-weight-regular blue-grey--text text--darken-3"
-                          >Select your post type</span
-                        >
+                        >Select your post type</span>
                       </v-flex>
                       <v-radio-group v-model="form.post_type" row>
-                        <v-radio
-                          label="Lost pet"
-                          value="Lost"
-                          color="yellow darken-3"
-                        ></v-radio>
-                        <v-radio
-                          label="Found pet"
-                          value="Found"
-                          color="yellow darken-3"
-                        ></v-radio>
+                        <v-radio label="Lost pet" value="Lost" color="yellow darken-3"></v-radio>
+                        <v-radio label="Found pet" value="Found" color="yellow darken-3"></v-radio>
                       </v-radio-group>
                       <v-flex xs12 md12>
                         <h1
                           class="headline text-center font-weight-bold blue-grey--text text--darken-3"
-                        >
-                          Fill Information to Report A Pet
-                        </h1>
+                        >Fill Information to Report A Pet</h1>
                       </v-flex>
                       <v-flex xs12 md12>
                         <v-text-field
@@ -55,25 +42,13 @@
                         />
                       </v-flex>
                       <v-flex xs12 md4>
-                        <v-text-field
-                          label="Name"
-                          v-model="form.name"
-                          color="yellow darken-3"
-                        />
+                        <v-text-field label="Name" v-model="form.name" color="yellow darken-3" />
                       </v-flex>
                       <v-flex xs12 md4>
-                        <v-text-field
-                          label="Phone No."
-                          v-model="form.tel"
-                          color="yellow darken-3"
-                        />
+                        <v-text-field label="Phone No." v-model="form.tel" color="yellow darken-3" />
                       </v-flex>
                       <v-flex xs12 md4>
-                        <v-text-field
-                          label="Email"
-                          v-model="form.email"
-                          color="yellow darken-3"
-                        />
+                        <v-text-field label="Email" v-model="form.email" color="yellow darken-3" />
                       </v-flex>
                       <v-flex xs12 md12>
                         <v-file-input
@@ -140,7 +115,7 @@
                           label="Pet Size *"
                           color="yellow darken-3"
                           v-model="form.size"
-                          :rules="[v => !!v || 'Gender is required']"
+                          :rules="[v => !!v || 'Pet size is required']"
                           required
                         ></v-select>
                       </v-flex>
@@ -183,7 +158,7 @@
                             <v-text-field
                               v-model="form.missing_found_date"
                               label="Date"
-                              prepend-icon="mdi-enent"
+                              prepend-icon="mdi-calendar-range"
                               readonly
                               v-on="on"
                               color="yellow darken-3"
@@ -203,8 +178,7 @@
                           color="yellow darken-3"
                           type="submit"
                           form="report-form"
-                          >Post Now!</v-btn
-                        >
+                        >Post Now!</v-btn>
                       </v-flex>
                     </v-layout>
                   </v-container>
@@ -230,18 +204,14 @@
       type="success"
       dismissible
       transition="scroll-y-transition"
-    >
-      Upload Successfully !
-    </v-alert>
+    >Upload Successfully !</v-alert>
     <v-alert
       class="alert"
       :value="showAlertErr"
       type="error"
       dismissible
       transition="scroll-y-transition"
-    >
-      Upload Failed !
-    </v-alert>
+    >Upload Failed !</v-alert>
   </div>
 </template>
 
@@ -407,6 +377,7 @@ export default {
             this.showAlertOk = true;
             this.clearForm();
             this.$refs.report_form.resetValidation();
+            setTimeout(() => this.$router.push({ path: "/" }), 3000);
           })
           .catch(err => {
             this.showAlertErr = true;

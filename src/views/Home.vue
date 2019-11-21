@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-img dark height="470" src="../assets/dog.jpg">
-    <!-- <v-card-title xs12 md4>text</v-card-title> -->
+    <v-img dark height="470" src="../assets/dc.jpg" aspect-ratio="1" class="grey lighten-2">
+      <!-- <v-card-title xs12 md4>text</v-card-title> -->
     </v-img>
     <Cover />
-    
+
     <FilterLost />
   </div>
 </template>

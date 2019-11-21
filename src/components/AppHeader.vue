@@ -1,34 +1,22 @@
 <template>
-  <div>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <div @click="goHome()" class="d-flex" color="transparent">
-          <v-icon :large="true" style="cursor: pointer;" color="yellow darken-3"
-            >mdi-paw</v-icon
-          >
-          <div
-            class="pawty blue-grey--text text--darken-3 display-1 font-italic font-weight-light"
-          >
-            Pawty
-          </div>
-        </div>
+        <v-btn @click="goHome()" class="d-flex" color="transparent">
+          <v-icon :size="30" style="cursor: pointer;" color="yellow darken-3">mdi-paw</v-icon>
+          <span class="pawty blue-grey--text text--darken-3 title">Pawty</span>
+        </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text to="/">
         <v-icon :small="true" color="yellow darken-3">mdi-home</v-icon>
-        <span
-          class="mr-2 blue-grey--text text--darken-3"
-          style="margin-right:10px;"
-          >Home</span
-        >
+        <span class="mr-2 blue-grey--text text--darken-3" style="margin-right:10px;">Home</span>
       </v-btn>
       <v-btn text to="/post">
         <v-icon :small="true" color="yellow darken-3">mdi-post</v-icon>
-        <span class="mr-2 blue-grey--text text--darken-3">Post</span>
+        <span class="mr-2 blue-grey--text text--darken-3">Report here!</span>
       </v-btn>
       <Auth />
     </v-app-bar>
-  </div>
 </template>
 
 <script>

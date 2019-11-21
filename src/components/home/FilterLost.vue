@@ -1,15 +1,11 @@
 <template>
   <v-app-bar bottom fixed>
+    <v-toolbar-title class="overline yellow--text text--darken-3 font-weight-bold">Filter</v-toolbar-title>
     <v-container>
       <v-row justify="center" style="max-height:50px;">
-        <v-col cols="12" sm="auto" class="d-flex justify-end max-h">
-          <div
-            class="grey--text text--darken-3 title max-h"
-            style="margin-top:7px;"
-          >
-            Filter:
-          </div>
-        </v-col>
+        <!-- <v-col cols="12" sm="auto" class="d-flex justify-end max-h">
+          <div class="grey--text text--darken-3 title max-h" style="margin-top:7px;">Filter:</div>
+        </v-col>-->
         <v-col sm="3" cols="4" class="max-h">
           <v-select
             dense
@@ -49,9 +45,10 @@
               <v-chip v-if="index === 0">
                 <span>{{ item }}</span>
               </v-chip>
-              <span v-if="index === 1" class="grey--text caption"
-                >(+{{ selectedProvince.length - 1 }} others)</span
-              >
+              <span
+                v-if="index === 1"
+                class="grey--text caption"
+              >(+{{ selectedProvince.length - 1 }} others)</span>
             </template>
           </v-select>
         </v-col>

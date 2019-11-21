@@ -1,11 +1,13 @@
 <template>
   <v-container class="list">
-    <v-card>
+    <v-card style="margin-top: -80px;">
       <v-responsive :aspect-ratio="16/9">
-      <v-spacer></v-spacer>
-        <v-toolbar flat color="blue-grey darken-3" dark>
+      <!-- <v-spacer></v-spacer> -->
+      <br>
+        <v-toolbar flat>
           <v-layout align-center justify-center="">
-          <v-toolbar-title class="text-center display-1 white-text">Featured Posts</v-toolbar-title>
+          <v-toolbar-title class="text-center display-1 font-weight-black">Featured Posts</v-toolbar-title>
+          
           </v-layout>
         </v-toolbar>
         <v-card-text>

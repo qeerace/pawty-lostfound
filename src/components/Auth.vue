@@ -3,12 +3,45 @@
     <v-dialog v-model="loginModal" width="400" @input="v => v || this.setLoginModal(false)">
       <template v-slot:activator="{ on }">
         <v-btn text v-on="on" v-if="!isAuth()">
-          <v-icon :small="true" color="blue-grey darken-3">mdi-account</v-icon>
-          <span class="mr-2 yellow--text text--darken-3">Login</span>
+          <v-icon :small="true" color="yellow darken-3">mdi-account-circle</v-icon>
+          <span class="mr-2 yellow--text text--darken-3">Sign In</span>
         </v-btn>
         <div class="profile" v-else>
-          <span style="margin: 10px 10px 0px;">Hi, {{ displayName() }}</span>
-          <v-btn color="red lighten-1 white--text" @click="logout()">logout</v-btn>
+          <div class="text-center">
+            <v-menu :close-on-content-click="false" :nudge-width="100" offset-x>
+              <template v-slot:activator="{ on }">
+                <v-btn text v-on="on">
+                  <v-icon size="20" color="yellow darken-3">mdi-account-circle</v-icon>
+                  <span
+                    class="mr-2 blue-grey--text text--darken-3"
+                    style="margin-right:10px;"
+                  >{{ displayName() }}</span>
+                  <v-icon :small="true" color="blue-grey darken-3">mdi-chevron-down</v-icon>
+                </v-btn>
+              </template>
+              <v-card>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-title>My Account</v-list-item-title>
+                  </v-list-item>
+                  <v-divider></v-divider>
+                  <v-list-item>
+                    <v-list-item-action>
+                      <v-btn text :to="'/my-posts'">My Posts</v-btn>
+                    </v-list-item-action>
+                  </v-list-item>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="red lighten-1 white--text" text @click="logout()">
+                      <v-icon :small="true" color="red">mdi-logout</v-icon>
+                      <span>Sign Out</span>
+                    </v-btn>
+                  </v-card-actions>
+                </v-list>
+              </v-card>
+            </v-menu>
+          </div>
+          <!-- <span style="margin: 10px 10px 0px;">Hi, {{ displayName() }}</span> -->
         </div>
       </template>
       <v-card class="auth-container">
@@ -73,8 +106,16 @@ export default {
       location.reload();
     },
     displayName() {
-      if (firebase.auth().currentUser.displayName) {
-        return firebase.auth().currentUser.displayName;
+      if (
+        firebase
+          .auth()
+          .currentUser.displayName.substring(0, 1)
+          .toUpperCase()
+      ) {
+        return firebase
+          .auth()
+          .currentUser.displayName.substring(0, 1)
+          .toUpperCase();
       } else {
         return "";
       }
