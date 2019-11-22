@@ -107,11 +107,11 @@ export default {
         this.currentPage = response.data.page;
         this.pageCount = response.data.page_count;
         this.loading = false;
-        console.log(this.wholeResponse)
+        // console.log(this.wholeResponse)
       })
-      .catch(error => {
-        console.log(error);
-      });
+      // .catch(error => {
+      //   console.log(error);
+      // });
   }
 };
 </script>

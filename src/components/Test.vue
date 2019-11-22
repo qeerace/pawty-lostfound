@@ -10,7 +10,7 @@ export default {
     user: this.$store.getters.getUser
   }),
   mounted(){
-    console.log(this.user);
+    // console.log(this.user);
   },
   computed: {
     ...mapGetters(["getUser"])

@@ -41,14 +41,17 @@
                           required
                         />
                       </v-flex>
-                      <v-flex xs12 md4>
+                      <v-flex xs12 md6>
                         <v-text-field label="Name" v-model="form.name" color="yellow darken-3" />
                       </v-flex>
-                      <v-flex xs12 md4>
+                      <v-flex xs12 md6>
                         <v-text-field label="Phone No." v-model="form.tel" color="yellow darken-3" />
                       </v-flex>
-                      <v-flex xs12 md4>
+                      <v-flex xs12 md6>
                         <v-text-field label="Email" v-model="form.email" color="yellow darken-3" />
+                      </v-flex>
+                      <v-flex xs12 md6>
+                        <v-text-field label="Line ID / Facebook or etc." v-model="form.social_account" color="yellow darken-3" />
                       </v-flex>
                       <v-flex xs12 md12>
                         <v-file-input
@@ -377,11 +380,11 @@ export default {
             this.showAlertOk = true;
             this.clearForm();
             this.$refs.report_form.resetValidation();
-            setTimeout(() => this.$router.push({ path: "/" }), 3000);
+            setTimeout(() => this.$router.push({ path: "/" }), 1000);
           })
           .catch(err => {
             this.showAlertErr = true;
-            console.log(err);
+            // console.log(err);
           });
         this.loading = false;
         // console.log(formData);

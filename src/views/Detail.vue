@@ -9,7 +9,7 @@
                 <v-btn class="ma-2" text icon color="blue lighten-2" to="/">
                   <v-icon>mdi-arrow-left</v-icon>
                 </v-btn>
-                {{petDetail.topic}}
+                {{petDetail.post_type}} {{petDetail.color}} {{petDetail.pet_type}} ({{petDetail.gender}})
               </v-card-title>
               <v-img :src="petDetail.pic_url" aspect-ratio="2" class="white--text align-end"></v-img>
               <v-row>
@@ -28,7 +28,11 @@
                     </div>
                     <div>
                       <v-icon small color="yellow darken-3">mdi-phone</v-icon>
-                      Phone No.: {{ petDetail.tel }}
+                      Tel: {{ petDetail.tel }}
+                    </div>
+                    <div>
+                      <v-icon small color="yellow darken-3">mdi-forum</v-icon>
+                      Social Account: {{ petDetail.social_account }}
                     </div>
                   </v-card-text>
                   <div class="d-flex inline-block">
@@ -39,7 +43,7 @@
                 <v-col cols="12" md="6">
                   <v-card-title
                     class="title font-weight-black blue-grey--text text--darken-3 text-uppercase"
-                  >{{petDetail.post_type}} {{petDetail.color}} {{petDetail.pet_type}} ({{petDetail.gender}})</v-card-title>
+                  >{{petDetail.topic}}</v-card-title>
                   <v-card-subtitle pb-0>
                     <div>
                       <v-icon small color="yellow darken-3">mdi-map-marker</v-icon>
@@ -55,7 +59,7 @@
                     </div>
                     <div>
                       Pet Size:
-                      {{ petDetail.size }}
+                      {{ petDetail.size }} 
                     </div>
                   </v-card-subtitle>
                   <v-card-text pb-0 class="blue-grey--text text--darken-3">
@@ -65,13 +69,13 @@
                 </v-col>
               </v-row>
               <v-card-actions v-if="isLogin">
-                <v-card-subtitle>Already Found?</v-card-subtitle>
+                <v-card-subtitle>Already Found / Don't want to see this post anymore?</v-card-subtitle>
                 <v-btn
                   
                   class="mx-0 subtitle-2 font-italic font-weight-medium amber--text text--lighten-5"
                   color="red darken-3"
                   @click="deletePost()"
-                >Delete Post</v-btn>
+                >Mark post as found</v-btn>
               </v-card-actions>
               <vue-disqus
                 class="disqus"
@@ -117,7 +121,7 @@ export default {
     axios
       .get(`/pet-detail/${this.$route.params.id}`, config)
       .then(response => {
-        console.log(this.$route.params.id);
+        // console.log(this.$route.params.id);
         this.petDetail = response.data;
         if (response.data.is_owner === true) {
           this.isLogin = true;
