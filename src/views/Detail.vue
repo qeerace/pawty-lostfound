@@ -5,7 +5,7 @@
         <v-col sm="10" cols="12">
           <v-card>
             <v-responsive :aspect-ratio="16 / 9">
-              <v-card-title>
+              <v-card-title class="text-uppercase">
                 <v-btn class="ma-2" text icon color="blue lighten-2" to="/">
                   <v-icon>mdi-arrow-left</v-icon>
                 </v-btn>
@@ -42,7 +42,7 @@
 
                 <v-col cols="12" md="6">
                   <v-card-title
-                    class="title font-weight-black blue-grey--text text--darken-3 text-uppercase"
+                    class="title font-weight-black blue-grey--text text--darken-3"
                   >{{petDetail.topic}}</v-card-title>
                   <v-card-subtitle pb-0>
                     <div>
@@ -50,16 +50,12 @@
                       {{ petDetail.province }}
                     </div>
                     <div>
-                      Missing/Found Date:
+                      {{petDetail.post_type}} Date:
                       {{ petDetail.missing_found_date }}
                     </div>
                     <div>
-                      Pet Breed:
+                      Pet Breed: 
                       {{ petDetail.breed }}
-                    </div>
-                    <div>
-                      Pet Size:
-                      {{ petDetail.size }} 
                     </div>
                   </v-card-subtitle>
                   <v-card-text pb-0 class="blue-grey--text text--darken-3">
@@ -68,10 +64,27 @@
                   </v-card-text>
                 </v-col>
               </v-row>
+              <v-card-actions justify-end>
+                <v-card-subtitle>
+                  <v-icon small>mdi-share-variant</v-icon>Share this post now!
+                </v-card-subtitle>
+                <social-sharing :url="this.url" :title="petDetail.topic" inline-template>
+                  <div>
+                    <network network="line">
+                      <button class="fab fa-line fa-2x" style="color: #00C853; padding:5px;"></button>
+                    </network>
+                    <network network="facebook">
+                      <button class="fab fa-facebook fa-2x" style="color: #0277BD; padding:5px;"></button>
+                    </network>
+                    <network network="twitter">
+                      <button class="fab fa-twitter fa-2x" style="color: #4FC3F7; padding:5px;"></button>
+                    </network>
+                  </div>
+                </social-sharing>
+              </v-card-actions>
               <v-card-actions v-if="isLogin">
                 <v-card-subtitle>Already Found / Don't want to see this post anymore?</v-card-subtitle>
                 <v-btn
-                  
                   class="mx-0 subtitle-2 font-italic font-weight-medium amber--text text--lighten-5"
                   color="red darken-3"
                   @click="deletePost()"
@@ -137,7 +150,9 @@ export default {
       url: window.location.href,
       petDetail: {},
       isLogin: false,
-      isFound: false
+      isFound: false,
+      fab: false,
+      
     };
   },
   methods: {

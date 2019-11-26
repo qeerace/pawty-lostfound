@@ -42,7 +42,7 @@
                         />
                       </v-flex>
                       <v-flex xs12 md6>
-                        <v-text-field label="Name" v-model="form.name" color="yellow darken-3" />
+                        <v-text-field label="Name *" v-model="form.name" color="yellow darken-3" :rules="[v => !!v || 'Name is required']" />
                       </v-flex>
                       <v-flex xs12 md6>
                         <v-text-field label="Phone No." v-model="form.tel" color="yellow darken-3" />
@@ -115,10 +115,9 @@
                           :items="size"
                           item-text="txt"
                           item-value="val"
-                          label="Pet Size *"
+                          label="Pet Size"
                           color="yellow darken-3"
                           v-model="form.size"
-                          :rules="[v => !!v || 'Pet size is required']"
                           required
                         ></v-select>
                       </v-flex>
@@ -371,9 +370,6 @@ export default {
             "Access-Control-Allow-Origin": "*"
           }
         };
-        // for (var pair of formData.entries()) {
-        //   console.log(pair[0] + ", " + pair[1]);
-        // }
         await axios
           .post("/add-pets", formData, config)
           .then(() => {
@@ -382,15 +378,10 @@ export default {
             this.$refs.report_form.resetValidation();
             setTimeout(() => this.$router.push({ path: "/" }), 1000);
           })
-          .catch(err => {
+          .catch(() => {
             this.showAlertErr = true;
-            // console.log(err);
           });
         this.loading = false;
-        // console.log(formData);
-        // for (var value of formData.values()) {
-        //   console.log(value);
-        // }
       }
     },
     formatDate(date) {

@@ -12,9 +12,11 @@ import lineClamp from "vue-line-clamp";
 import { firebaseConfig } from "../firebase.config";
 
 let app = "";
+var SocialSharing = require("vue-social-sharing");
 
 Vue.config.productionTip = false;
 Vue.use(VueDisqus);
+Vue.use(SocialSharing);
 Vue.use(lineClamp, { importCss: true });
 axios.defaults.baseURL = process.env.VUE_APP_API;
 // Initialize Firebase
